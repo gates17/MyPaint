@@ -38,6 +38,7 @@
             this.undoButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.saveAsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panelDrawing
@@ -130,7 +131,7 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(2, 354);
+            this.loadButton.Location = new System.Drawing.Point(2, 284);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(94, 39);
             this.loadButton.TabIndex = 8;
@@ -140,13 +141,23 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(2, 399);
+            this.saveButton.Location = new System.Drawing.Point(2, 329);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(94, 39);
             this.saveButton.TabIndex = 9;
             this.saveButton.Text = "Gravar";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // saveAsButton
+            // 
+            this.saveAsButton.Location = new System.Drawing.Point(2, 374);
+            this.saveAsButton.Name = "saveAsButton";
+            this.saveAsButton.Size = new System.Drawing.Size(94, 64);
+            this.saveAsButton.TabIndex = 10;
+            this.saveAsButton.Text = "Gravar Como";
+            this.saveAsButton.UseVisualStyleBackColor = true;
+            this.saveAsButton.Click += new System.EventHandler(this.SaveAsButton_Click);
             // 
             // Form1
             // 
@@ -155,6 +166,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.saveAsButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.undoButton);
@@ -183,5 +195,6 @@
         private Button undoButton;
         private Button loadButton;
         private Button saveButton;
+        private Button saveAsButton;
     }
 }

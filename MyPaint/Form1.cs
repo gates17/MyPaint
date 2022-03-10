@@ -15,11 +15,10 @@ namespace MyPaint
         bool isMousePressed;
         int axisXstart, axisYstart;
 
-        //Line line;
         List<Shape> shapes = new();
         List<Shape> shapesToSave = new();
         Shape shape;
-        //DataSetHelper dataSetHelper;
+        DataSetHelper dataSetHelper;
 
         DesignType designType = DesignType.Line;
         Pen pen;
@@ -239,9 +238,10 @@ namespace MyPaint
 
         private void UndoButton_Click(object sender, EventArgs e)
         {
-            if (shapes.Count > 0)
+            if (shapesToSave.Count > 0)
             {
                 shapes.Remove(shapes.Last());
+                shapesToSave.Remove(shapesToSave.Last());
                 shape = null;
                 panelDrawing.Refresh();
             }
@@ -250,7 +250,58 @@ namespace MyPaint
 
         private void loadButton_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "xml files (*.xml)|*.xml|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = openFileDialog.FileName;
+                DataSetHelper.SetFileName(fileName);
+            }
+            this.shapes.Clear();
+            panelDrawing.Refresh();
             this.shapes.AddRange(DataSetHelper.GetFromDataSet(pen));
+            panelDrawing.Refresh();
+        }
+
+        private void SaveAsButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "xml files (*.xml)|*.xml|txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = saveFileDialog.FileName;
+                DataSetHelper.SetFileName(fileName);
+            }
+
+            if(shapes.Count != shapesToSave.Count)
+                shapesToSave = shapes;
+            
+            foreach (Shape shape in shapesToSave)
+            {
+                if (!shape.Equals(null))
+                {
+                    switch (shape)
+                    {
+                        case Circle:
+                            this.shape = shape as Circle;
+                            break;
+                        case Line:
+                            this.shape = shape as Line;
+                            break;
+                        case Rectangle:
+                            this.shape = shape as Rectangle;
+                            break;
+                    }
+                    this.shape.AddToDataSet(shape);
+                }
+            }
+            this.shape = null;
+            this.shapesToSave.Clear();
             panelDrawing.Refresh();
         }
 

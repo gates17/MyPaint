@@ -19,7 +19,7 @@ namespace MyPaint
         public static readonly string COLUMN_SHAPE_PEN = "Pen";
 
 
-        public string filename = "mydrawings2.xml";
+        public static string filename;
 
         private static DataSetHelper instance;
 
@@ -33,6 +33,8 @@ namespace MyPaint
         /// Books Table access properties
         /// </summary>
         public DataTable ShapesTable { get; set; }
+
+        public static string Filename { get; set; }
 
 
         /// <summary>
@@ -62,7 +64,10 @@ namespace MyPaint
         {
             try
             {
-                DrawingDataSet.ReadXml(filename);
+                if (!(filename.Equals("") || filename.Equals(null)))
+                {
+                    DrawingDataSet.ReadXml(filename);
+                }
             }
             catch (FileNotFoundException)
             {
@@ -75,7 +80,10 @@ namespace MyPaint
         /// </summary>
         public void Save()
         {
-            DrawingDataSet.WriteXml(filename);
+            if (!(filename.Equals("") && filename.Equals(null)))
+            {
+                DrawingDataSet.WriteXml(filename);
+            }
         }
 
         /// <summary>
@@ -87,6 +95,15 @@ namespace MyPaint
             if (instance == null)
                 instance = new DataSetHelper();
             return instance;
+        }
+
+        public static void SetFileName(string fileName)
+        {
+            filename = fileName;
+            if (Filename == "")
+            {
+                Filename = fileName;
+            }
         }
 
         /// <summary>

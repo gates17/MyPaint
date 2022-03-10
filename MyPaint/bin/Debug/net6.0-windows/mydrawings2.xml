@@ -72,4 +72,12 @@
     <Yend>149</Yend>
     <Pen>System.Drawing.Pen</Pen>
   </Shape>
+  <Shape>
+    <Type>Rectangle</Type>
+    <Xstart>514</Xstart>
+    <Ystart>66</Ystart>
+    <Xend>619</Xend>
+    <Yend>107</Yend>
+    <Pen>System.Drawing.Pen</Pen>
+  </Shape>
 </Shapes>
