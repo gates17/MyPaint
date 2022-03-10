@@ -17,17 +17,16 @@ namespace MyPaint
 
         //Line line;
         List<Shape> shapes = new();
+        List<Shape> shapesToSave = new();
         Shape shape;
         //DataSetHelper dataSetHelper;
 
         DesignType designType = DesignType.Line;
         Pen pen;
-        //System.Drawing.Drawing2D.GraphicsPath mouseMovement;
         public Form1()
         {
             InitializeComponent();
             this.isMousePressed = false;
-
             pen = new Pen(Color.Black, 1);
 
             #region auto load
@@ -139,20 +138,20 @@ namespace MyPaint
             //}
             #endregion
 
-            //mouseMovement = new System.Drawing.Drawing2D.GraphicsPath();
         }
 
         private void panelDrawing_Paint(object sender, PaintEventArgs e)
         {
-
-
             Graphics graphics = e.Graphics;
-            foreach(Shape shape in shapes)
-            {
-                shape.Draw(graphics);
-            }
+            if (!shapes.Equals(null))
+                foreach(Shape shape in shapes)
+                {
+                    if (shape != null)
+                        shape.Draw(graphics);
+                }
             if (shape != null)
                 shape.Draw(graphics);
+
         }
 
         private void panelDrawing_MouseDown(object sender, MouseEventArgs e)
@@ -160,8 +159,6 @@ namespace MyPaint
             isMousePressed = true;
             axisXstart = e.X; //Starting x and Y
             axisYstart = e.Y;
-            //panelDrawing.Cursor = Cursors.Cross;
-
         }
 
         private void panelDrawing_MouseUp(object sender, MouseEventArgs e)
@@ -169,12 +166,15 @@ namespace MyPaint
             switch (designType)
             {
                 case DesignType.Line:
+                    shapesToSave.Add(new Line(axisXstart, axisYstart, e.X, e.Y, pen));
                     shapes.Add(new Line(axisXstart, axisYstart, e.X, e.Y, pen));
                     break;
                 case DesignType.Circle:
+                    shapesToSave.Add(new Circle(axisXstart, axisYstart, e.X, e.Y, pen));
                     shapes.Add(new Circle(axisXstart, axisYstart, e.X, e.Y, pen));
                     break;
                 case DesignType.Rectangle:
+                    shapesToSave.Add(new Rectangle(axisXstart, axisYstart, e.X, e.Y, pen));
                     shapes.Add(new Rectangle(axisXstart, axisYstart, e.X, e.Y, pen));
                     break;
                 case DesignType.Pen:
@@ -183,8 +183,6 @@ namespace MyPaint
 
             // shape ou dataset?
             isMousePressed = false;
-
-            //panelDrawing.Cursor = Cursors.Default;
         }
 
         private void panelDrawing_MouseMove(object sender, MouseEventArgs e)
@@ -205,11 +203,8 @@ namespace MyPaint
                     case DesignType.Pen:
                         break;
                 }
-
-
                 panelDrawing.Refresh();
             }
-            //mouseMovement.AddLine(axisXstart, axisYstart, axisXend, axisYend);
         }
 
         private void buttonLine_Click(object sender, EventArgs e)
@@ -244,7 +239,12 @@ namespace MyPaint
 
         private void UndoButton_Click(object sender, EventArgs e)
         {
-
+            if (shapes.Count > 0)
+            {
+                shapes.Remove(shapes.Last());
+                shape = null;
+                panelDrawing.Refresh();
+            }
         }
 
 
@@ -256,7 +256,7 @@ namespace MyPaint
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            foreach (Shape shape in shapes)
+            foreach (Shape shape in shapesToSave)
             {
                 if (!shape.Equals(null))
                 {
@@ -276,6 +276,7 @@ namespace MyPaint
                 }
             }
             this.shape = null;
+            this.shapesToSave.Clear();
             panelDrawing.Refresh();
         }
     }

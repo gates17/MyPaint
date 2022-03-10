@@ -56,4 +56,20 @@
     <Yend>152</Yend>
     <Pen>System.Drawing.Pen</Pen>
   </Shape>
+  <Shape>
+    <Type>Line</Type>
+    <Xstart>537</Xstart>
+    <Ystart>149</Ystart>
+    <Xend>581</Xend>
+    <Yend>196</Yend>
+    <Pen>System.Drawing.Pen</Pen>
+  </Shape>
+  <Shape>
+    <Type>Line</Type>
+    <Xstart>578</Xstart>
+    <Ystart>189</Ystart>
+    <Xend>636</Xend>
+    <Yend>149</Yend>
+    <Pen>System.Drawing.Pen</Pen>
+  </Shape>
 </Shapes>

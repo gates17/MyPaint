@@ -89,9 +89,14 @@ namespace MyPaint
             return instance;
         }
 
+        /// <summary>
+        /// Reads data from text file and converts to Shapes List
+        /// </summary>
+        /// <param name="pen"></param>
+        /// <returns></returns>
         public static List<Shape> GetFromDataSet(Pen pen)
         {
-            DataSetHelper dataSetHelper = DataSetHelper.GetInstance();
+            DataSetHelper dataSetHelper = GetInstance(); //DataSetHelper.GetInstance()
             List<Shape> shapes = new();
 
             foreach (DataRow row in dataSetHelper.ShapesTable.Rows)
