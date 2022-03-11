@@ -54,7 +54,6 @@ namespace MyPaint
 
             DrawingDataSet.Tables.Add(ShapesTable);
 
-            Load();
         }
 
         /// <summary>
@@ -115,6 +114,9 @@ namespace MyPaint
         {
             DataSetHelper dataSetHelper = GetInstance(); //DataSetHelper.GetInstance()
             List<Shape> shapes = new();
+
+            dataSetHelper.ShapesTable.Clear();
+            dataSetHelper.Load();
 
             foreach (DataRow row in dataSetHelper.ShapesTable.Rows)
             {

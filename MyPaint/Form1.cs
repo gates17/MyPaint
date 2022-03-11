@@ -260,6 +260,7 @@ namespace MyPaint
                 DataSetHelper.SetFileName(fileName);
             }
             this.shapes.Clear();
+            this.shapesToSave.Clear();
             panelDrawing.Refresh();
             this.shapes.AddRange(DataSetHelper.GetFromDataSet(pen));
             panelDrawing.Refresh();
@@ -278,8 +279,8 @@ namespace MyPaint
                 DataSetHelper.SetFileName(fileName);
             }
 
-            if(shapes.Count != shapesToSave.Count)
-                shapesToSave = shapes;
+            //if(shapes.Count != shapesToSave.Count)
+            //    shapesToSave = shapes;
             
             foreach (Shape shape in shapesToSave)
             {
