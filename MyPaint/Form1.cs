@@ -28,115 +28,6 @@ namespace MyPaint
             this.isMousePressed = false;
             pen = new Pen(Color.Black, 1);
 
-            #region auto load
-            //DataSetHelper dataSetHelper = DataSetHelper.GetInstance();
-
-            ////metodo get 2
-            //foreach(DataRow row in dataSetHelper.ShapesTable.Rows)
-            //{
-            //    //MessageBox.Show(dataSetHelper.ShapesTable.Columns[DataSetHelper.COLUMN_SHAPE_TYPE].DefaultValue.ToString());
-            //    DataTable dataTable = new DataTable("Shape");
-            //    dataTable = dataSetHelper.ShapesTable;
-            //    for (int index = 0; index < row.ItemArray.Count(); index++)
-            //        dataTable.Columns[index].DefaultValue = row.ItemArray[index].ToString();
-
-            //    switch(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_TYPE].DefaultValue)
-            //    {
-            //        case "Line":
-            //            shapes.Add(
-            //                new Line(
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISXSTART].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISYSTART].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISXEND].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISYEND].DefaultValue.ToString()),
-            //                    pen
-            //                )
-            //            );
-            //            break;
-            //        case "Circle":
-            //            shapes.Add(
-            //                new Circle(
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISXSTART].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISYSTART].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISXEND].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISYEND].DefaultValue.ToString()),
-            //                    pen
-            //                )
-            //            );
-            //            break;
-            //        case "Rectangle":
-            //            shapes.Add(
-            //                new Rectangle(
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISXSTART].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISYSTART].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISXEND].DefaultValue.ToString()),
-            //                    int.Parse(dataTable.Columns[DataSetHelper.COLUMN_SHAPE_AXISYEND].DefaultValue.ToString()),
-            //                    pen
-            //                )
-            //            );
-            //            break;
-            //        case "PenShape":
-            //            break;
-            //    }
-            //}
-            #endregion
-
-            #region get shapes old
-            //metodo get 1
-            //var table = dataSetHelper.DrawingDataSet.Tables;
-            //var size = table.Count;
-
-            //for (int i = 0;i < size;i++)
-            //{
-            //    var rows = table[i].Rows;
-            //    for (int j = 0; j < rows.Count; j++)
-            //    {
-            //        var b = rows[j].ItemArray;
-            //        if (b[0] != null)
-            //        {
-            //            switch (b[0].ToString())
-            //            {
-            //                case "Line":
-            //                    try
-            //                    {
-            //                        shapes.Add(new Line(int.Parse(b[1].ToString()), int.Parse(b[2].ToString()), int.Parse(b[3].ToString()), int.Parse(b[4].ToString()), pen));
-            //                    }
-            //                    catch (Exception)
-            //                    {
-            //                        continue;
-            //                        //throw;
-            //                    }
-            //                    break;
-            //                case "Circle":
-            //                    try
-            //                    {
-            //                        shapes.Add(new Circle(int.Parse(b[1].ToString()), int.Parse(b[2].ToString()), int.Parse(b[3].ToString()), int.Parse(b[4].ToString()), pen));
-            //                    }
-            //                    catch (Exception)
-            //                    {
-            //                        continue;
-            //                        //throw;
-            //                    }
-            //                    break;
-            //                case "Rectangle":
-            //                    try
-            //                    {
-            //                        shapes.Add(new Rectangle(int.Parse(b[1].ToString()), int.Parse(b[2].ToString()), int.Parse(b[3].ToString()), int.Parse(b[4].ToString()), pen));
-            //                    }
-            //                    catch (Exception)
-            //                    {
-            //                        continue;
-            //                        //throw;
-            //                    }
-            //                    break;
-            //                case "Pen":
-            //                    break;
-            //            }
-            //        }
-            //    }
-            //}
-            #endregion
-
         }
 
         private void panelDrawing_Paint(object sender, PaintEventArgs e)
@@ -247,7 +138,6 @@ namespace MyPaint
             }
         }
 
-
         private void loadButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -278,7 +168,6 @@ namespace MyPaint
                 string fileName = saveFileDialog.FileName;
                 DataSetHelper.SetFileName(fileName);
             }
-
             //if(shapes.Count != shapesToSave.Count)
             //    shapesToSave = shapes;
             
